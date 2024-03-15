@@ -1,31 +1,22 @@
 import s from './DecksList.module.css'
-import { useEffect } from 'react'
-import { Decks, decksAPI } from './../../../features/decks/decks-api'
-import { useAppDispatch, useAppSelector } from '../../../app/store'
-
 import { DeckItem } from '../../../features/decks/DecksList/DeckItem/DeckItem'
-import { selectDecks } from '../../../features/decks/decks-selectors'
-import { fetchDecksTC } from '../../../features/decks/decks-thunks'
+import { useFetchDecks } from '../../../features/decks/DecksList/useFetchDecks'
 
 export const DecksList = () => {
-  const decks = useAppSelector<Decks[]>(selectDecks)
-  console.log(decks)
-  const dispatch = useAppDispatch()
+  /*  const decks = useAppSelector<Decks[]>(selectDecks)
+    console.log(decks)
+    const dispatch = useAppDispatch()
 
 
-  useEffect(() => {
-    dispatch(fetchDecksTC())
-   /* decksAPI.fetchDecks()
-      .then((res) => {
-        dispatch(setDecks(res.data.items))
-      })*/
-  }, [])
-
+    useEffect(() => {
+      dispatch(fetchDecksTC())
+    }, [])*/
+  const { decks } = useFetchDecks()
 
   return <ul className={s.list}>
     {decks?.map(el => {
       return (
-          <DeckItem deck={el} key={el.id}/>
+        <DeckItem deck={el} key={el.id} />
       )
     })}
 
