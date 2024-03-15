@@ -13,29 +13,22 @@ export const decksReducer = (state: DecksState = initialState, action: ActionTyp
   switch (action.type) {
     case 'GET-DECKS':
       return { ...state, decks: action.decks }
-    case 'DECKS/ADD-DECK':
-      return {...state,decks: [action.deck,...state.decks]}
+/*    case 'DECKS/ADD-DECK':
+      return {...state,decks: [action.deck,...state.decks]}*/
   }
   return state
 }
 
-type ActionType = SetDecksType|AddDeckType
+type ActionType = SetDecksType/*|AddDeckType*/
 
 export type SetDecksType = ReturnType<typeof setDecks>
-export type AddDeckType=ReturnType<typeof addDeck>
+//export type AddDeckType=ReturnType<typeof addDeck>
 
 
-export const addDeck=(deck:Decks)=>{
+/*export const addDeck=(deck:Decks)=>{
   return {type:'DECKS/ADD-DECK',deck} as const
-}
+}*/
 export const setDecks = (decks: Decks[]) => {
   return { type: 'GET-DECKS', decks } as const
 }
 
-/*
-export const fetchDecksTC=()=>(dispatch:AppDispatch)=>{
-  decksAPI.fetchDecks()
-    .then((res) => {
-      dispatch(setDecks(res.data.items))
-    })
-}*/
